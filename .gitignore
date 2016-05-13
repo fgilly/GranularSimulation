@@ -5,7 +5,7 @@
 
 testFiles/
 images/
-
+*.csv
 
 ### Eclipse ###
 

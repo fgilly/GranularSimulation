@@ -18,8 +18,8 @@ public class SiloData extends Data {
 
 	@Override
 	public FloatPoint getPosition() {
-		double x = Math.random() * width;
-		double y = (length - heigth) * Math.random() + heigth;
+		double x = Math.random() * (width-0.2) + 0.1;
+		double y = (length - heigth -0.2) * Math.random() + heigth + 0.1;
 		return new FloatPoint(x, y);
 	}
 
