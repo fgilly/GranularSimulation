@@ -11,13 +11,13 @@ import itba.edu.ar.ss.algorithm.impl.Verlet;
 
 public class RelaxationTime {
 
-	private static final int printAfterNFrames = 10;
+	private static final int printAfterNFrames = 100;
 	private static final double length = 10;
 	private static final double width = 5;
 	private static final double height = 5;
 	private static final double mass = 0.01;
 	private static final String path = System.getProperty("user.dir") + "/";
-	private static final double deltaTime = 0.5 * Math.pow(10, -4);
+	private static final double deltaTime = 0.5 * Math.pow(10, -4.5);
 	private static final int[] particleQuantities = {100,1000};
 	
 	public static void main(String[] args) throws IOException, InstantiationException, IllegalAccessException {
@@ -29,7 +29,7 @@ public class RelaxationTime {
 			SimulationRelaxationTime simulation = new SimulationRelaxationTime(length, width, height, mass, path,particleQuanity);
 
 			GranularSimulationEnergy gse = new GranularSimulationEnergy(path, printAfterNFrames, "particleQuantity-"+particleQuanity);
-			GranularSimulationPositions gsp = new GranularSimulationPositions(path, length, printAfterNFrames,"particleQuantity-"+particleQuanity);
+			GranularSimulationPositions gsp = new GranularSimulationPositions(path, length,width, printAfterNFrames,"particleQuantity-"+particleQuanity);
 			
 			simulation.subscribe(gse);
 			simulation.subscribe(gsp);

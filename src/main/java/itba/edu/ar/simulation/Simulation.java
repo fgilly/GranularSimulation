@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import itba.edu.ar.Wall;
 import itba.edu.ar.cellIndexMethod.CellIndexMethod;
 import itba.edu.ar.cellIndexMethod.IndexMatrix;
 import itba.edu.ar.cellIndexMethod.IndexMatrixBuilder;
@@ -19,6 +18,7 @@ import itba.edu.ar.input.file.data.Data;
 import itba.edu.ar.simulation.data.GranularParticle;
 import itba.edu.ar.simulation.data.ParticleForce;
 import itba.edu.ar.simulation.data.SiloData;
+import itba.edu.ar.simulation.model.Wall;
 import itba.edu.ar.ss.algorithm.Algorithm;
 import itba.edu.ar.ss.model.entity.Entity;
 import itba.edu.ar.ss.model.force.Force;

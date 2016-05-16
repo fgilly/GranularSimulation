@@ -2,7 +2,6 @@
 # Created by https://www.gitignore.io/api/eclipse,maven,java,linux,windows,osx
 
 ### Our Project ###
-
 testFiles/
 images/
 *.csv

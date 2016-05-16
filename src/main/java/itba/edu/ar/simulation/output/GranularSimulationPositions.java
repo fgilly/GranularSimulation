@@ -21,19 +21,20 @@ import itba.edu.ar.ss.system.data.SolarSystemData;
 
 public class GranularSimulationPositions implements SimulationObserver {
 
-	private static final String COLUMNS_FILE = "Properties=id:I:1:pos:R:2:velocity:R:2:color:R:3";
-	private static final String _SEPARTOR_ = " ";
+	private static final String COLUMNS_FILE = "Properties=id:I:1:pos:R:2:radio:R:1:color:R:3";
+	private static final String _SEPARATOR_ = " ";
 	int printAfterNFrames;
 	private String path;
 	private double length;
 	private String tag;
+	private double width;
 
-	public GranularSimulationPositions(String path, double length,int printAfterNFrames,String tag) throws IOException {
+	public GranularSimulationPositions(String path, double length,double width,int printAfterNFrames,String tag) throws IOException {
 		this.path = path;
+		this.width=width;
 		this.length=length;
 		this.printAfterNFrames=printAfterNFrames;
-		this.tag=tag;
-		
+		this.tag=tag;		
 		Files.write(Paths.get(path + "GranularSimulationPositions_"+tag), new LinkedList<String>(), Charset.forName("UTF-8"),
 				StandardOpenOption.TRUNCATE_EXISTING,StandardOpenOption.CREATE);
 
@@ -48,13 +49,14 @@ public class GranularSimulationPositions implements SimulationObserver {
 		List<String> fileContent = new ArrayList<String>();
 
 		fileContent.add(particles.size() + "");
-		fileContent.add("Time=" + frame + " " + sizeBox(length) + " " + COLUMNS_FILE);
+		fileContent.add("Time=" + frame + " " + sizeBox(length,width) + " " + COLUMNS_FILE);
 
 		StringBuilder sb = new StringBuilder();
 		int id = 1;
 		for (Particle particle : particles) {
-			sb.append(id).append(_SEPARTOR_).append(particle.getPosition().getX()).append(_SEPARTOR_)
-					.append(particle.getPosition().getY()).append(_SEPARTOR_).append(particle.getRadio());
+			sb.append(id).append(_SEPARATOR_).append(particle.getPosition().getX()).append(_SEPARATOR_)
+					.append(particle.getPosition().getY()).append(_SEPARATOR_).append(particle.getRadio()).append(_SEPARATOR_);
+			addColor(sb, particle);
 			fileContent.add(sb.toString());
 			sb= new StringBuilder();
 			id++;
@@ -70,12 +72,19 @@ public class GranularSimulationPositions implements SimulationObserver {
 
 	}
 
+	private void addColor(StringBuilder sb, Particle particle) {
+		sb.append(colorRange(Math.cos(particle.getAngle())) + _SEPARATOR_ + colorRange(Math.sin(particle.getAngle()))
+				+ _SEPARATOR_ + 1 + _SEPARATOR_);
+	}
+	private double colorRange( double color){
+		return color/2 + 0.5;
+	}
 	
 	public void simulationEnded() {
 	}
 
-	private String sizeBox(double length) {
-		String sizeX = length + " 0.00000000 0.00000000";
+	private String sizeBox(double length,double width) {
+		String sizeX = width + " 0.00000000 0.00000000";
 		String sizeY = "0.00000000 " + length + " 0.00000000";
 		String sizeZ = "0.00000000 0.00000000 0.000000000000000001"; // sizeZ!=(0,0,0)
 																		// for

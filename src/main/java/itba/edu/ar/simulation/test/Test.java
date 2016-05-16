@@ -12,7 +12,7 @@ import itba.edu.ar.ss.algorithm.impl.Verlet;
 
 public class Test {
 
-	private static final int printAfterNFrames = 10;
+	private static final int printAfterNFrames = 20;
 	private static final double[] lengths = { 10, 15, 20 };
 	private static final double width = 5;
 	private static final double height = 5;
@@ -20,7 +20,7 @@ public class Test {
 	private static final double mass = 0.01;
 	private static final String path = System.getProperty("user.dir") + "/";
 	private static final double deltaTime = 0.5 * Math.pow(10, -4);
-	private static final double finalTime = 0.5;
+	private static final double finalTime = 3;
 
 	public static void main(String[] args) throws IOException, InstantiationException, IllegalAccessException {
 
@@ -30,7 +30,7 @@ public class Test {
 
 			Simulation simulation = new Simulation(length, width, height, diameter, mass, path);
 
-			GranularSimulationPositions gsp = new GranularSimulationPositions(path, length, printAfterNFrames,"lenght-"+length);
+			GranularSimulationPositions gsp = new GranularSimulationPositions(path, length,width, printAfterNFrames,"lenght-"+length);
 			GranularSimulationEnergy gse = new GranularSimulationEnergy(path, printAfterNFrames, "lenght-"+length);
 			GranularSimulationFlow gsf = new GranularSimulationFlow(printAfterNFrames, path, height, length, width,
 					diameter, deltaTime);
