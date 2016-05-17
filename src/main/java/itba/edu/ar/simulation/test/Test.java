@@ -12,14 +12,14 @@ import itba.edu.ar.ss.algorithm.impl.Verlet;
 
 public class Test {
 
-	private static final int printAfterNFrames = 20;
+	private static final int printAfterNFrames = 100;
 	private static final double[] lengths = { 10, 15, 20 };
 	private static final double width = 5;
 	private static final double height = 5;
 	private static final double diameter = 2;
 	private static final double mass = 0.01;
 	private static final String path = System.getProperty("user.dir") + "/";
-	private static final double deltaTime = 0.5 * Math.pow(10, -4);
+	private static final double deltaTime = 0.5 * Math.pow(10, -5);
 	private static final double finalTime = 3;
 
 	public static void main(String[] args) throws IOException, InstantiationException, IllegalAccessException {
