@@ -21,7 +21,7 @@ import itba.edu.ar.ss.system.data.SolarSystemData;
 
 public class GranularSimulationPositions implements SimulationObserver {
 
-	private static final String COLUMNS_FILE = "Properties=id:I:1:pos:R:2:radio:R:1:color:R:3";
+	private static final String COLUMNS_FILE = "Properties=id:I:1:pos:R:2:radius:R:1:color:R:3";
 	private static final String _SEPARATOR_ = " ";
 	int printAfterNFrames;
 	private String path;
