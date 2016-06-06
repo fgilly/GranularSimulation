@@ -60,8 +60,8 @@ public class Wall {
 		
 		double tangencialParticlePosition = particlePosition.multiply(tangencialVersor);
 
-		return overlap > 0 && position1.multiply(tangencialVersor) <= tangencialParticlePosition
-				&& tangencialParticlePosition < position2.multiply(tangencialVersor);
+		return overlap > 0 && position1.multiply(tangencialVersor) - particle.getRadio() <= tangencialParticlePosition
+				&& tangencialParticlePosition < position2.multiply(tangencialVersor) + particle.getRadio();
 
 	}
 
