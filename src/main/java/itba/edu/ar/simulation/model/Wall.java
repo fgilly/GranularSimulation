@@ -64,5 +64,32 @@ public class Wall {
 				&& tangencialParticlePosition < position2.multiply(tangencialVersor) + particle.getRadio();
 
 	}
+	
+	public boolean isCollidingCorner(Particle particle, double overlap){
+		FloatPoint particlePosition = particle.getPosition();
+		double tangencialParticlePosition = particlePosition.multiply(tangencialVersor);
+		
+		return overlap > 0 && ( (position1.multiply(tangencialVersor) - particle.getRadio() <= tangencialParticlePosition 
+							  && tangencialParticlePosition <= position1.multiply(tangencialVersor))
+				|| (position2.multiply(tangencialVersor) <= tangencialParticlePosition 
+					&& tangencialParticlePosition <= position2.multiply(tangencialVersor) + particle.getRadio()));
+	}
+	
+	public FloatPoint collideCorner(Particle particle){
+		FloatPoint particlePosition = particle.getPosition();
+		double tangencialParticlePosition = particlePosition.multiply(tangencialVersor);
+		FloatPoint coll = null;
+		FloatPoint normal = null;
+		
+		if ( (position1.multiply(tangencialVersor) - particle.getRadio() <= tangencialParticlePosition  
+				&& tangencialParticlePosition <= position1.multiply(tangencialVersor))){
+			coll = position1;
+		}else{
+			coll = position2;
+		}
+		normal = coll.minus(particle.getPosition());
+		normal = normal.divide(normal.abs());
+		return normal;
+	}
 
 }
